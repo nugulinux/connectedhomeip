@@ -195,7 +195,7 @@ config("disabled_warnings") {
   cflags = [
     "-Wno-deprecated-declarations",
     "-Wno-missing-field-initializers",
-    "-Wno-unknown-warning-option",
+    "-Wno-type-limits",
     "-Wno-unused-parameter",
   ]
   if (!is_debug) {

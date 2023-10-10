@@ -26,6 +26,7 @@
 #include <mutex>
 #include <stdlib.h>
 #include <strings.h>
+#include <signal.h>
 
 namespace {
 
