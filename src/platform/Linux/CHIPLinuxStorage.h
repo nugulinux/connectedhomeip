@@ -37,15 +37,15 @@
 #include <platform/Linux/CHIPLinuxStorageIni.h>
 
 #ifndef FATCONFDIR
-#define FATCONFDIR "/tmp"
+#define FATCONFDIR "/var/chip"
 #endif
 
 #ifndef SYSCONFDIR
-#define SYSCONFDIR "/tmp"
+#define SYSCONFDIR "/var/chip"
 #endif
 
 #ifndef LOCALSTATEDIR
-#define LOCALSTATEDIR "/tmp"
+#define LOCALSTATEDIR "/var/chip"
 #endif
 
 #define CHIP_DEFAULT_FACTORY_PATH                                                                                                  \
