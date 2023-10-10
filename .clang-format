@@ -113,7 +113,6 @@ Standard: c++17
 PointerAlignment: Middle
 SpaceAfterCStyleCast: true
 SpaceInEmptyBlock: false
-ObjCBreakBeforeNestedBlockParam: false
 ---
 Language: JavaScript
 BasedOnStyle: WebKit

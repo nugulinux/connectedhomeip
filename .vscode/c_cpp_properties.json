@@ -1,6 +1,18 @@
 {
     "configurations": [
         {
+            "name": "arm gcc debug (GN)",
+            "compileCommands": "${workspaceFolder}/out/debug/compile_commands.json",
+            "compilerPath": "/opt/toolchain/bin/arm-none-linux-gnueabihf-g++",
+            "cStandard": "c11",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "gcc-x64",
+            "browse": {
+                "path": ["${workspaceFolder}/out/debug/"],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
             "name": "gcc debug (GN)",
             "compileCommands": "${workspaceFolder}/out/debug/compile_commands.gcc.json",
             "compilerPath": "/usr/bin/gcc",
