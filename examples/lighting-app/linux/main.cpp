@@ -48,6 +48,9 @@ LightingAppCommandDelegate sLightingAppCommandDelegate;
 void MatterPostAttributeChangeCallback(const chip::app::ConcreteAttributePath & attributePath, uint8_t type, uint16_t size,
                                        uint8_t * value)
 {
+    printf("\nendpoint: 0x%x\tcluster: 0x%x\tattribute: 0x%X\ttype: 0x%X\tsize: %d\n",
+        attributePath.mEndpointId, attributePath.mClusterId, attributePath.mAttributeId, type, size);
+
     if (attributePath.mClusterId == OnOff::Id && attributePath.mAttributeId == OnOff::Attributes::OnOff::Id)
     {
         LightingMgr().InitiateAction(*value ? LightingManager::ON_ACTION : LightingManager::OFF_ACTION);

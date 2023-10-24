@@ -197,7 +197,7 @@
  * Human readable name of the device model.
  */
 #ifndef CHIP_DEVICE_CONFIG_DEVICE_PRODUCT_NAME
-#define CHIP_DEVICE_CONFIG_DEVICE_PRODUCT_NAME "TEST_PRODUCT"
+#define CHIP_DEVICE_CONFIG_DEVICE_PRODUCT_NAME "NU120"
 #endif
 
 /**

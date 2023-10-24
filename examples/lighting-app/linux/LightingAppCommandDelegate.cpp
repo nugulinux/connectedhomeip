@@ -142,6 +142,13 @@ void LightingAppCommandHandler::HandleCommand(intptr_t context)
     {
         self->OnRebootSignalHandler(BootReasonType::kSoftwareReset);
     }
+    else if (name == "OnOff")
+    {
+        uint16_t endpoint_id =  static_cast<uint16_t>(self->mJsonValue["endpoint"].asUInt());
+        bool is_on = static_cast<uint8_t>(self->mJsonValue["value"].asBool());
+
+        self->OnLightOnOff(endpoint_id, is_on);
+    }
     else
     {
         ChipLogError(NotSpecified, "Unhandled command: Should never happens");
@@ -345,6 +352,17 @@ void LightingAppCommandHandler::OnSwitchMultiPressCompleteHandler(uint8_t previo
     ChipLogDetail(NotSpecified, "%d times the momentary switch has been pressed", count);
 
     Clusters::SwitchServer::Instance().OnMultiPressComplete(endpoint, previousPosition, count);
+}
+
+
+void LightingAppCommandHandler::OnLightOnOff(uint16_t endpoint_id, bool is_on)
+{
+    if (is_on)
+        printf("\nendpoint: 0x%x - Set ON\n", endpoint_id);
+    else
+        printf("\nendpoint: 0x%x - Set OFF\n",endpoint_id);
+
+    Clusters::OnOff::Attributes::OnOff::Set(endpoint_id,  is_on);
 }
 
 void LightingAppCommandDelegate::OnEventCommandReceived(const char * json)

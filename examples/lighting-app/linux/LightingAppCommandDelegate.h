@@ -88,6 +88,11 @@ private:
      * sequence, after it has been detected that the sequence has ended.
      */
     void OnSwitchMultiPressCompleteHandler(uint8_t previousPosition, uint8_t count);
+
+    /**
+     * Should be called when on / off command received.
+     */
+    void OnLightOnOff(uint16_t endpoint_id, bool is_on);
 };
 
 class LightingAppCommandDelegate : public NamedPipeCommandDelegate
