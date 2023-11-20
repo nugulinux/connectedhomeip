@@ -78,11 +78,22 @@ _bootstrap_or_activate() {
     if [ ! -f "$_CHIP_ROOT/third_party/pigweed/repo/pw_env_setup/util.sh" ]; then
         # Make sure our submodule remotes are correct for this revision.
         git submodule sync --recursive
-        git submodule update --init
+        git submodule update --init third_party/jsoncpp/repo
+        git submodule update --init third_party/nlassert/repo
+        git submodule update --init third_party/nlio/repo
+        git submodule update --init third_party/nlunit-test/repo
+        git submodule update --init third_party/perfetto/repo
+        git submodule update --init third_party/pigweed/repo
+
     elif [ "$_BOOTSTRAP_NAME" = "bootstrap.sh" ]; then
         # In this case, only update already checked out submodules.
         git submodule sync --recursive
-        git submodule update
+        git submodule update third_party/jsoncpp/repo
+        git submodule update third_party/nlassert/repo
+        git submodule update third_party/nlio/repo
+        git submodule update third_party/nlunit-test/repo
+        git submodule update third_party/perfetto/repo
+        git submodule update third_party/pigweed/repo
     fi
 
     PW_BRANDING_BANNER="$_CHIP_ROOT/scripts/setup/banner.txt"
