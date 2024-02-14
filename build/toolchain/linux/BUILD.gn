@@ -49,7 +49,7 @@ gcc_toolchain("linux_x86_clang") {
 }
 
 gcc_toolchain("linux_arm_gcc") {
-  _toolprefix = "arm-linux-gnueabihf-"
+  _toolprefix = "arm-none-linux-gnueabihf-"
 
   cc = "${_toolprefix}gcc"
   cxx = "${_toolprefix}g++"
