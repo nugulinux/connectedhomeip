@@ -37,7 +37,12 @@ if (chip_mdns == "platform") {
   }
 }
 
+import("${chip_root}/build/chip/linux/gdbus_library.gni")
+
 static_library("Linux") {
+  defines = [
+    "CHIP_DEVICE_CONFIG_ENABLE_DBUS=1"
+  ]
   sources = [
     "../DeviceSafeQueue.cpp",
     "../DeviceSafeQueue.h",
@@ -114,7 +119,7 @@ static_library("Linux") {
     "${chip_root}/third_party/inipp",
   ]
 
-  public_configs = []
+  public_configs = [ glib_config ]
 
   if (chip_mdns == "platform") {
     sources += [

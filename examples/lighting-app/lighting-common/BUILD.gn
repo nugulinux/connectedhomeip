@@ -34,9 +34,14 @@ source_set("color-format") {
   ]
 }
 
+import("${chip_root}/build/chip/linux/gdbus_library.gni")
+
 source_set("lighting-manager") {
+  defines = [
+    "CHIP_DEVICE_CONFIG_ENABLE_DBUS=1"
+  ]
   deps = [ "${chip_root}/src/lib" ]
-  public_configs = [ ":config" ]
+  public_configs = [ ":config", glib_config ]
   sources = [
     "include/LightingManager.h",
     "src/LightingManager.cpp",

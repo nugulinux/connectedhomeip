@@ -161,15 +161,22 @@ NamedPipeCommands sChipNamedPipeCommands;
 LightingAppCommandDelegate sLightingAppCommandDelegate;
 } // namespace
 
-void MatterPostAttributeChangeCallback(const chip::app::ConcreteAttributePath & attributePath, uint8_t type, uint16_t size,
-                                       uint8_t * value)
+void MatterPostAttributeChangeCallback(const chip::app::ConcreteAttributePath& attributePath, uint8_t type, uint16_t size,
+    uint8_t* value)
 {
-    printf("\nendpoint: 0x%x\tcluster: 0x%x\tattribute: 0x%X\ttype: 0x%X\tsize: %d\n",
-        attributePath.mEndpointId, attributePath.mClusterId, attributePath.mAttributeId, type, size);
+    printf("\nendpoint: 0x%x\tcluster: 0x%x\tattribute: 0x%X\ttype: 0x%X\tsize: %d\tvalue: %d\n",
+        attributePath.mEndpointId, attributePath.mClusterId, attributePath.mAttributeId, type, size, *value);
 
-    if (attributePath.mClusterId == OnOff::Id && attributePath.mAttributeId == OnOff::Attributes::OnOff::Id)
-    {
-        LightingMgr().InitiateAction(*value ? LightingManager::ON_ACTION : LightingManager::OFF_ACTION);
+    // OnOff::Id == 6
+    if (attributePath.mClusterId == OnOff::Id) {
+        if (attributePath.mAttributeId == OnOff::Attributes::OnOff::Id) // 0
+            LightingMgr().InitiateAction(*value ? LightingManager::ON_ACTION : LightingManager::OFF_ACTION);
+    }
+    // LevelControl::Id == 8
+    else if (attributePath.mClusterId == LevelControl::Id) {
+        if (attributePath.mAttributeId == LevelControl::Attributes::CurrentLevel::Id) {
+            LightingMgr().SetLevel(*value);
+        }
     }
 }
 
